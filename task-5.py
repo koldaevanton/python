@@ -3,9 +3,9 @@ revenue = int(input("Enter company revenue: "))
 expenses = int(input("Enter company expenses: "))
 
 if expenses > revenue:
-    print("Your company in unprofitable!")
+    print("Your company is unprofitable!")
 else:
-    print("Your company in profitable!")
+    print("Your company is profitable!")
     profit = revenue - expenses
     profitability = profit / revenue
     print(f"Profitability: {profitability:.2f}")

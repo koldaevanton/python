@@ -1,13 +1,13 @@
 from random import randint
 
-# Part 1. Generate numbers and write to file
-with open("text_5.txt", "w", encoding="utf-8") as writeFile:
+with open("text_5.txt", "w+", encoding="utf-8") as textFile:
+    # Part 1. Generate numbers and write to file
     numbers = [str(randint(0, 100)) for i in range(20)]
     str_numbers = " ".join(numbers)
-    writeFile.write(str_numbers)
+    textFile.write(str_numbers)
 
-# Part 2. Read file and calculate sum
-with open("text_5.txt", "r", encoding="utf-8") as textFile:
+    # Part 2. Read file and calculate sum
+    textFile.seek(0)
     sum = 0
     content = textFile.readline()
     s_content = content.split()

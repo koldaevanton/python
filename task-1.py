@@ -1,5 +1,9 @@
+import time
+from itertools import cycle
+
+
 class TrafficLight:
-    __color: string
+    __color: str
     __running: bool
 
     def __init__(self):
@@ -7,13 +11,29 @@ class TrafficLight:
 
     def switch(self):
         colors_list = ["red", "yellow", "green", "yellow"]
-        self.__color = colors_list[colors_list.index(self.__color) + 1 % 3]
+        for color in cycle(colors_list):
+            self.__color = color
+            yield color
 
-    def start(self):
-        self.__running = true
+    def start(self, seconds):
+        self.__running = True
+        color_times = {
+            "green": 10,
+            "yellow": 2,
+            "red": 7
+        }
+        seconds_left = seconds
+        switcher = self.switch()
+        while seconds_left > 0:
+            next(switcher)
+            print(f"Current color is {self.__color}")
+            time_to_switch = color_times[self.__color]
+            time.sleep(time_to_switch)
+            seconds_left -= time_to_switch
 
-    def stop(self):
-        self.__running = false
+        print("Traffic Light stopped!")
+        self.__running = False
 
 
-
+tl = TrafficLight()
+tl.start(60)
